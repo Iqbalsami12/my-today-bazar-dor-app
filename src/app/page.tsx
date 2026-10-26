@@ -1,4 +1,5 @@
 import HeroSection from "@/components/Hero";
+import IncreasedPrice from "@/components/IncreasedPrice";
 import ReducedPrice from "@/components/ReducedPrice";
 
 export default function Home() {
@@ -7,8 +8,15 @@ export default function Home() {
       <HeroSection></HeroSection>
 
      <section className="mt-10">
-       <h2 className="font-bold text-3xl"><span className="text-red-500">▼</span> আজ দাম বেড়েছে</h2>
+       <h2 className="font-bold text-3xl"><span className="text-red-500">▲</span> আজ দাম বেড়েছে</h2>
       <ReducedPrice></ReducedPrice>
+     </section>
+     <section className="mt-10">
+      <h2 className="font-bold text-3xl">
+        <span className="text-green-500">▼</span> আজ দাম কমেছে
+      </h2>
+      <IncreasedPrice></IncreasedPrice>
+
      </section>
     </div>
   );
