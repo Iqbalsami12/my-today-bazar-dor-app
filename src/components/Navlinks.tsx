@@ -19,7 +19,7 @@ const data:INavItems[] = await res.json()
     return (
         <div className='flex gap-6 justify-center mt-5'>
             {
-                data.map(d => <Link key={d.id} href={d.slug}>
+                data.map(d => <Link key={d.id} href={`/category/${d.slug}`}>
                     <span>{d.icon}</span>
                     <span>{d.nameBn}</span>
                 

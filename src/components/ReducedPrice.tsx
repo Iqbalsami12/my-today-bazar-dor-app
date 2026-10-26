@@ -20,7 +20,7 @@ const ReducedPrice = async () => {
     const products = await res.json()
     const reducedPriceProducts:IReducedPrice[] = products.filter((item: { change: { dir: string; }; }) => item.change.dir === 'down').slice(0, 6)
     return (
-        <div className='container mx-auto grid grid-cols-3 gap-5'>
+        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 reducedPriceProducts.map(product => (
                     <div key={product.id} className="card bg-base-100  shadow-sm p-1.5 mx-2.5">
