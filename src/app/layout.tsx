@@ -3,6 +3,7 @@ import { Noto_Serif_Bengali } from "next/font/google";
 import "./globals.css";
 import HeaderPage from "@/components/header";
 import Navlinks from "@/components/Navlinks";
+import Marquee from "@/components/Marquee";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   
@@ -23,9 +24,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-theme='light'
       className={`${notoSerifBengali.className} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <HeaderPage></HeaderPage>
+      <body className="min-h-full flex flex-col bg-base-200">
+        <div className="max-w-7xl mx-auto">
+          <HeaderPage></HeaderPage>
         <Navlinks></Navlinks>
+        </div>
+        <Marquee></Marquee>
         {children}</body>
     </html>
   );
