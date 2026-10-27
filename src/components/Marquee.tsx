@@ -21,6 +21,12 @@ const Marquee = async() => {
         }
     )
     const headlines:IHeadline[] = await res.json()
+    const unitInBangla: Record<string, string> = {
+        kg: "কেজি",
+        gram: "গ্রাম",
+        liter: "লিটার",
+        piece: "টি",
+    };
     
     return (
         <div className='bg-base-100 mt-5'>
@@ -30,7 +36,7 @@ const Marquee = async() => {
                         <span>{head.categoryIcon}</span>
                         <span>{head.nameBn}</span>
                         
-                        <span className='mx-1'>{head.today} টাকা / {[head.unit]}</span>
+                        <span className='mx-1'>{head.today} টাকা / {unitInBangla[head.unit] || head.unit}</span>
                         
                         <span
     className={`mx-1 font-semibold ${

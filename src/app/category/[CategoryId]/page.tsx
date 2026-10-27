@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 
 export const instant = false
@@ -66,11 +67,12 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
         <section className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
              {
                 visibleProducts.map(visible => (
+                  <Link key={visible.id} href={`/item/${visible.id}`}>
                     <div key={visible.id} className="card bg-base-100  shadow-sm p-1.5 mx-2.5">
                         <div className='flex gap-2.5'>
                            
-                               <figure className='bg-base-200 '>
-                                <span className="text-3xl">{visible.image}</span>
+                               <figure className='bg-base-200 my-7 p-1.5 rounded-2xl '>
+                                <span className="text-4xl">{visible.image}</span>
                                </figure>
 
 
@@ -111,6 +113,7 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
                                 </div>
                             </div>
                     </div>
+                  </Link>
                 ))
             }
         </section>
