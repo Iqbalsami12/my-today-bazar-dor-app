@@ -1,9 +1,11 @@
 
+import Link from 'next/link';
 import React from 'react';
 
 interface IReducedPrice{
     id:number,
     nameBn:string,
+    unit:string,
     image:string,
     today:number,
     change:{
@@ -19,10 +21,26 @@ const ReducedPrice = async () => {
     )
     const products = await res.json()
     const reducedPriceProducts:IReducedPrice[] = products.filter((item: { change: { dir: string; }; }) => item.change.dir === 'down').slice(0, 6)
+      const unitInBangla: Record<string, string> = {
+        kg: "কেজি",
+        gram: "গ্রাম",
+        liter: "লিটার",
+        piece: "পিস"
+
+    };
+    const toBanglaNumber = (number: number | string) => {
+  const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+  return number
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
+};
     return (
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
             {
                 reducedPriceProducts.map(product => (
+                    <Link key={product.id} href={`/item/${product.id}`}>
+                    
                     <div key={product.id} className="card bg-base-100  shadow-sm p-1.5 mx-2.5">
                         <div className='flex gap-2.5'>
                            
@@ -34,7 +52,7 @@ const ReducedPrice = async () => {
                             
                             <div className="card-body">
                                 <h2 className="card-title">{product.nameBn}</h2>
-                                <p>প্রতি কেজি</p>
+                                <p>প্রতি {unitInBangla[product.unit]}</p>
 
                             </div>
                         </div>
@@ -45,13 +63,14 @@ const ReducedPrice = async () => {
                             <div className='flex justify-between'>
                                 <div>
                                     <p>আজকের দাম</p>
-                                    <p><span className='font-bold text-2xl'>{product.today}</span> টাকা </p>
+                                    <p><span className='font-bold text-2xl'>{toBanglaNumber(product.today)}</span> টাকা </p>
                                 </div>
                                 <div>
-                                    <p><span className='text-red-600'>▲</span> {product.change.pct} %</p>
+                                    <p><span className='text-red-600'>▲</span> {toBanglaNumber(product.change.pct)} %</p>
                                 </div>
                             </div>
                     </div>
+                    </Link>
                 ))
             }
         </div>

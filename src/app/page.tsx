@@ -4,6 +4,7 @@ import IncreasedPrice from "@/components/IncreasedPrice";
 import ReducedPrice from "@/components/ReducedPrice";
 
 export default function Home() {
+  
   return (
     <div className="container mx-auto">
       <HeroSection></HeroSection>

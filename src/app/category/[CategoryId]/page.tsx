@@ -6,6 +6,7 @@ export const instant = false
 interface ICategoryTypes{
     id:number
      nameBn: string;
+     unit:string
    today: string;
      image:string
      categoryIcon:string
@@ -24,6 +25,20 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
             cache: "force-cache"
         }
     )
+     const unitInBangla: Record<string, string> = {
+        kg: "কেজি",
+        gram: "গ্রাম",
+        liter: "লিটার",
+        piece: "পিস"
+
+    };
+    const toBanglaNumber = (number: number | string) => {
+  const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+  return number
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
+};
 
     const categoryProduct:ICategoryTypes[] = await res.json()
 
@@ -79,7 +94,7 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
                             
                             <div className="card-body">
                                 <h2 className="card-title">{visible.nameBn}</h2>
-                                <p>প্রতি কেজি</p>
+                                <p>প্রতি {unitInBangla[visible.unit]}</p>
 
                             </div>
                         </div>
@@ -90,7 +105,7 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
                             <div className='flex justify-between'>
                                 <div>
                                     <p>আজকের দাম</p>
-                                    <p><span className='font-bold text-2xl'>{visible.today}</span> টাকা </p>
+                                    <p><span className='font-bold text-2xl'>{toBanglaNumber(visible.today)}</span> টাকা </p>
                                 </div>
                                 <div>
                                     <p><span className={`mx-1 font-semibold ${
@@ -108,7 +123,7 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
         : "—"}
 
     {" "}
-    {Math.abs(visible.change.pct)}%
+    {toBanglaNumber(Math.abs(visible.change.pct))}%
         </span> </p>
                                 </div>
                             </div>

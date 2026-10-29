@@ -25,8 +25,15 @@ const Marquee = async() => {
         kg: "কেজি",
         gram: "গ্রাম",
         liter: "লিটার",
-        piece: "টি",
+        piece: "পিস",
     };
+     const toBanglaNumber = (number: number | string) => {
+  const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+  return number
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
+};
     
     return (
         <div className='bg-base-100 mt-5'>
@@ -36,7 +43,7 @@ const Marquee = async() => {
                         <span>{head.categoryIcon}</span>
                         <span>{head.nameBn}</span>
                         
-                        <span className='mx-1'>{head.today} টাকা / {unitInBangla[head.unit] || head.unit}</span>
+                        <span className='mx-1'>{toBanglaNumber(head.today)} টাকা / {unitInBangla[head.unit] || head.unit}</span>
                         
                         <span
     className={`mx-1 font-semibold ${
@@ -54,7 +61,7 @@ const Marquee = async() => {
         : "—"}
 
     {" "}
-    {Math.abs(head.change.pct)}%
+    {toBanglaNumber(Math.abs(head.change.pct))}%
 </span>
                     </span>
                 ))}

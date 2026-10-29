@@ -32,8 +32,16 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
         kg: "কেজি",
         gram: "গ্রাম",
         liter: "লিটার",
-        piece: "টি",
+        piece: "পিস"
+
     };
+    const toBanglaNumber = (number: number | string) => {
+  const banglaDigits = "০১২৩৪৫৬৭৮৯";
+
+  return number
+    .toString()
+    .replace(/\d/g, (digit) => banglaDigits[Number(digit)]);
+};
 
     const lowestPrice = Math.min(...individualItem.markets.map((market) => market.min))
     
@@ -63,7 +71,7 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
                             : individualItem.change.dir === "down"
                                 ? "বেড়েছে"
                                 : "অপরিবর্তিত"} : 
-                            {Math.abs(individualItem.today - individualItem.yesterday)}  টাকা
+                            {toBanglaNumber(Math.abs(individualItem.today - individualItem.yesterday))}  টাকা
 
                         {" "}
 
@@ -76,7 +84,7 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
 
                <div className='bg-base-200 rounded-2xl p-4 flex flex-col items-center justify-center'>
                 <p className='text-gray-500'>আজকের দাম</p>
-                <h2 className='font-bold text-3xl'>{individualItem.today}</h2>
+                <h2 className='font-bold text-3xl'>{toBanglaNumber(individualItem.today)}</h2>
                 <p> টাকা / {unitInBangla[individualItem.unit] || individualItem.unit}</p>
                 <span
     className={`mx-1 font-semibold ${
@@ -94,7 +102,7 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
         : "—"}
 
     {" "}
-    {Math.abs(individualItem.change.pct)}%
+    {toBanglaNumber(Math.abs(individualItem.change.pct))}%
 </span>
 
                </div>
@@ -105,18 +113,18 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
             <div className='flex  justify-around'>
                 <div className='bg-gray-100 rounded-2xl p-5 w-96'>
                     <p className='text-gray-500'>সর্বনিম্ন দাম</p>
-                    <h2 className='text-green-600'><span className='font-bold text-2xl '>{lowestPrice}</span> টাকা</h2>
+                    <h2 className='text-green-600'><span className='font-bold text-2xl '>{toBanglaNumber(lowestPrice)}</span> টাকা</h2>
                     <p className='text-gray-500'>সবচেয়ে কম দামের বাজার</p>
                 </div>
                 <div className='bg-gray-100 rounded-2xl p-5 w-96'>
                     <p className='text-gray-500'>সর্বাধিক দাম</p>
-                    <h2 className='text-red-600'><span className='font-bold text-2xl '>{highestPrice}</span> টাকা</h2>
+                    <h2 className='text-red-600'><span className='font-bold text-2xl '>{toBanglaNumber(highestPrice)}</span> টাকা</h2>
                     <p className='text-gray-500'>সবচেয়ে বেশি দামের বাজার</p>
                 </div>
                 <div className='bg-gray-100 rounded-2xl p-5 w-96 '>
                     <p className='text-gray-500'>গড় দাম</p>
-                    <h2 className='text-green-600'><span className='font-bold text-2xl '>{averagePrice}</span> টাকা</h2>
-                    <p className='text-gray-500'>প্রতি {individualItem.unit}-এর হিসাবে</p>
+                    <h2 className='text-green-600'><span className='font-bold text-2xl '>{toBanglaNumber(averagePrice)}</span> টাকা</h2>
+                    <p className='text-gray-500'>প্রতি {unitInBangla[individualItem.unit]}-এর হিসাবে</p>
                 </div>
             </div>
             </section>  
@@ -149,9 +157,9 @@ const ItemPage = async ({ params }: { params: { itemId: string } }) => {
                                     className='odd:bg-white even:bg-base-200 border-b border-gray-600 p-5'>
                                         <td className='p-2.5'>{item.market}</td>
                                         <td className='py-2.5'>{item.division}</td>
-                                        <td className='py-2.5 text-right'>{item.min} টাকা </td>
-                                        <td className='py-2.5 text-right'>{item.max} টাকা</td>
-                                        <td className='p-2.5 text-right'>{average} টাকা</td>
+                                        <td className='py-2.5 text-right'>{toBanglaNumber(item.min)} টাকা </td>
+                                        <td className='py-2.5 text-right'>{toBanglaNumber(item.max)} টাকা</td>
+                                        <td className='p-2.5 text-right'>{toBanglaNumber(average)} টাকা</td>
                                     </tr>
                                 )
                              })  
