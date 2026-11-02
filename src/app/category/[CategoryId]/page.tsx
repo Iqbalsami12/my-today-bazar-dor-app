@@ -110,9 +110,9 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
                                 <div>
                                     <p><span className={`mx-1 font-semibold ${
         visible.change.dir === "up"
-            ? "text-green-500"
-            : visible.change.dir === "down"
             ? "text-red-500"
+            : visible.change.dir === "down"
+            ? "text-green-500"
             : "text-gray-500"
     }`}>
         
