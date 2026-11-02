@@ -1,3 +1,4 @@
+import SortedProducts from '@/components/SortedProducts';
 import Link from 'next/link';
 import React from 'react';
 
@@ -43,6 +44,8 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
     const categoryProduct:ICategoryTypes[] = await res.json()
 
     const visibleProducts = categoryProduct.slice(0, 4)
+
+    
     return (
 
         <div>
@@ -61,23 +64,7 @@ const CategoryPage = async ({ params }: {params:{CategoryId:string}}) => {
             </section>
             {/* sorting dropdown */}
 
-            <div className="navbar mt-10 bg-white container mx-auto rounded-2xl">
-
-                <div className="flex grow items-center justify-end px-2">
-                    <div className="flex items-stretch">
-                        <p className='text-gray-600 text-xl'>সাজান</p>
-                        <div className="dropdown dropdown-end">
-                            <div tabIndex={0} role="button" className="btn btn-ghost rounded-field text-xl text-gray-500">ডিফল্ট</div>
-                            <ul
-                                tabIndex={-1}
-                                className="menu dropdown-content bg-base-200 rounded-box z-1 mt-4 w-52 p-2 shadow-sm">
-                                <li><a>Item 1</a></li>
-                                <li><a>Item 2</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <SortedProducts products={visibleProducts}></SortedProducts>
 
         <section className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4'>
              {

@@ -4,6 +4,7 @@ import "./globals.css";
 import HeaderPage from "@/components/header";
 import Navlinks from "@/components/Navlinks";
 import Marquee from "@/components/Marquee";
+import Footer from "@/components/Footer";
 
 const notoSerifBengali = Noto_Serif_Bengali({
   
@@ -31,7 +32,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         </div>
         <Marquee></Marquee>
        <main className="container mx-auto">
-         {children}</main></body>
+         {children}</main>
+         <Footer></Footer>
+         </body>
+         
     </html>
   );
 }

@@ -1,6 +1,7 @@
 
 'use client'
 import Image from 'next/image';
+import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const HeroSection = () => {
@@ -27,7 +28,9 @@ const HeroSection = () => {
             <h2 className='font-bold text-3xl md:text-5xl'>আজকের বাজারের দাম এক নজরে</h2>
             <p>চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।</p>
 
+           
            <button className="btn btn-success max-w-30 text-white">সব পণ্য দেখুন</button>
+           
             </div>
 
             <Image className='w-48 md:w-72 h-auto'

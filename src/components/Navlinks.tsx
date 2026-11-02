@@ -1,5 +1,8 @@
+'use client'
+
 import Link from 'next/link';
-import React from 'react';
+import { usePathname } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 
 interface INavItems {
     id:string
@@ -8,23 +11,36 @@ interface INavItems {
     icon:string
 }
 
-const Navlinks = async() => {
+const Navlinks = () => {
 
-const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories',
-    {cache: "force-cache"}
+const [category, setCategory] = useState<INavItems[]>([])
+const pathName = usePathname()
+useEffect(()=>{
+     fetch('https://openapi.programming-hero.com/api/bazardor/categories',
 )
-const data:INavItems[] = await res.json()
+.then((res) => res.json())
+.then((category) => setCategory(category))
+},[])
 
 
     return (
-        <div className='flex gap-6 justify-center mt-5'>
-            {
-                data.map(d => <Link key={d.id} href={`/category/${d.slug}`}>
-                    <span>{d.icon}</span>
-                    <span>{d.nameBn}</span>
-                
-                </Link>)
-            }
+        <div className='flex flex-wrap  gap-6 justify-center mt-5 sm:gap-4 px-2'>
+             {category.map((d) => {
+        const isActive = pathName === `/category/${d.slug}`;
+            return(
+                 <Link
+            key={d.id}
+            href={`/category/${d.slug}`}
+            className={`rounded-md px-3 py-2 transition-colors ${
+              isActive
+                ? 'bg-green-600 text-white'
+                : ''
+            }`}
+          >
+            <span>{d.icon}</span>{' '}
+            <span>{d.nameBn}</span>
+          </Link>)
+             })} 
         </div>
     );
 };

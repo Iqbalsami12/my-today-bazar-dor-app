@@ -64,9 +64,9 @@ const AllProducts = async () => {
                             </div>
                             <div>
                                 <p><span className={`mx-1 font-semibold ${product.change.dir === "up"
-                                        ? "text-green-500"
+                                        ? "text-red-500"
                                         : product.change.dir === "down"
-                                            ? "text-red-500"
+                                            ? "text-green-500"
                                             : "text-gray-500"
                                     }`} >
                                         {product.change.dir === "up"

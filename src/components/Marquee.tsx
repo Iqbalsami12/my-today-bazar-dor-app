@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import React from 'react';
 import MarqueeText from "react-marquee-text"
 import "react-marquee-text/dist/styles.css"
@@ -39,6 +40,7 @@ const Marquee = async() => {
         <div className='bg-base-100 mt-5'>
             <MarqueeText direction='right' duration={15} >
                 {headlines.map(head => (
+                   <Link key={head.id} href={`/item/${head.id}`}>
                     <span key={head.id} className='mx-3.5'>
                         <span>{head.categoryIcon}</span>
                         <span>{head.nameBn}</span>
@@ -48,9 +50,9 @@ const Marquee = async() => {
                         <span
     className={`mx-1 font-semibold ${
         head.change.dir === "up"
-            ? "text-green-500"
-            : head.change.dir === "down"
             ? "text-red-500"
+            : head.change.dir === "down"
+            ? "text-green-500"
             : "text-gray-500"
     }`}
 >
@@ -64,6 +66,7 @@ const Marquee = async() => {
     {toBanglaNumber(Math.abs(head.change.pct))}%
 </span>
                     </span>
+                   </Link>
                 ))}
             </MarqueeText>
         </div>
