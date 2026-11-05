@@ -1,7 +1,6 @@
 
 'use client'
 import Image from 'next/image';
-import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 const HeroSection = () => {
@@ -29,7 +28,9 @@ const HeroSection = () => {
             <p>চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়, সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।</p>
 
            
-           <button className="btn btn-success max-w-30 text-white">সব পণ্য দেখুন</button>
+           <a href="#all-products" className="btn btn-success max-w-30 text-white">
+             সব পণ্য দেখুন
+           </a>
            
             </div>
 

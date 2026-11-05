@@ -21,7 +21,7 @@ const HeaderPage = () => {
   }, []);
 
     return (
-        <div className='flex justify-around mt-10'>
+        <div className='container mx-auto flex justify-between mt-10'>
            <div className='flex gap-2'>
             <Image className='rounded-2xl bg-green-400 p-1.5'
             src='/logo-icon.png'

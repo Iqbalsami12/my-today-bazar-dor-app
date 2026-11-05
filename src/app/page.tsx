@@ -21,10 +21,12 @@ export default function Home() {
 
      </section>
 
-     <section className="mt-10">
+     <section className="mt-10"  id="all-products">
       <p className="font-bold text-3xl">সব পণ্য</p>
       <p className="text-gray-500">মোট ৩৩টি পণ্য দেখানো হচ্ছে</p>
+      
       <AllProducts></AllProducts>
+      
      </section>
     </div>
   );
